@@ -25,8 +25,13 @@ const FormProduct = () => {
         })
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        await axios.post('http://localhost:5000/api/product', form)
+        .then((res) => { 
+            loadData() 
+        })
+        .catch((err) => console.log(err))
     }
 
 
