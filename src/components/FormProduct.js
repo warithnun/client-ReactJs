@@ -33,6 +33,15 @@ const FormProduct = () => {
         })
         .catch((err) => console.log(err))
     }
+    const handleRemove = async (id)=>{
+        console.log(id)
+        await axios.delete('http://localhost:5000/api/product/'+id)
+        .then((res)=>{
+            console.log(res)
+            loadData()
+        })
+        .catch((err)=>console.log(err))
+    }
 
 
     return (
@@ -52,6 +61,7 @@ const FormProduct = () => {
                         <th scope="col">Name</th>
                         <th scope="col">detail</th>
                         <th scope="col">price</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +72,7 @@ const FormProduct = () => {
                                 <td>{item.name}</td>
                                 <td>{item.detail}</td>
                                 <td>{item.price}</td>
+                                <td onClick={()=>handleRemove(item._id)}>delete</td>
                             </tr>
                         )
                             : null
