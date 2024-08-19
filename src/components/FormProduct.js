@@ -28,20 +28,20 @@ const FormProduct = () => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">NO.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">detail</th>
+                        <th scope="col">price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         data ? data.map((item,index) =>
                             <tr key={index}>
-                                <th scope="row">{item.name}</th>
+                                <td>{index+1}</td>
+                                <td>{item.name}</td>
                                 <td>{item.detail}</td>
                                 <td>{item.price}</td>
-                                <td>@mdo</td>
                             </tr>
                         )
                             : null
