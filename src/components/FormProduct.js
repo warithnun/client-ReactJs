@@ -5,7 +5,7 @@ const FormProduct = () => {
     // javascript
     const wrt = 'wrtzen'
     const [data, setData] = useState([])
-    const [form,setForm]= useState({})
+    const [form, setForm] = useState({})
 
     useEffect(() => {
         // code run app
@@ -19,10 +19,14 @@ const FormProduct = () => {
             .catch((err) => console.log(err))
     }
 
-    const handleChange =(e)=>{
+    const handleChange = (e) => {
         setForm({
-            ...form,[e.target.name]:e.target.value
+            ...form, [e.target.name]: e.target.value
         })
+    }
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
     }
 
 
@@ -30,10 +34,10 @@ const FormProduct = () => {
         <div>
             {/* HTML */}
             FormProduct
-            <form>
-                <input type='text' name='name' onChange={e=>handleChange(e)} placeholder='name'/> <br/>
-                <input type='text' name='detail' placeholder='detail'/><br/>
-                <input type='text' name='price' placeholder='price'/><br/>
+            <form onSubmit={handleSubmit}>
+                <input type='text' name='name' placeholder='name' onChange={e => handleChange(e)} /> <br />
+                <input type='text' name='detail' placeholder='detail' onChange={e => handleChange(e)} /><br />
+                <input type='text' name='price' placeholder='price' onChange={e => handleChange(e)} /><br />
                 <button>Add product</button>
             </form>
             <table className="table">
@@ -47,9 +51,9 @@ const FormProduct = () => {
                 </thead>
                 <tbody>
                     {
-                        data ? data.map((item,index) =>
+                        data ? data.map((item, index) =>
                             <tr key={index}>
-                                <td>{index+1}</td>
+                                <td>{index + 1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.detail}</td>
                                 <td>{item.price}</td>
