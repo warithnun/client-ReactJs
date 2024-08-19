@@ -5,6 +5,7 @@ const FormProduct = () => {
     // javascript
     const wrt = 'wrtzen'
     const [data, setData] = useState([])
+    const [form,setForm]= useState({})
 
     useEffect(() => {
         // code run app
@@ -18,13 +19,23 @@ const FormProduct = () => {
             .catch((err) => console.log(err))
     }
 
-    console.log(data)
+    const handleChange =(e)=>{
+        setForm({
+            ...form,[e.target.name]:e.target.value
+        })
+    }
 
 
     return (
         <div>
             {/* HTML */}
             FormProduct
+            <form>
+                <input type='text' name='name' onChange={e=>handleChange(e)} placeholder='name'/> <br/>
+                <input type='text' name='detail' placeholder='detail'/><br/>
+                <input type='text' name='price' placeholder='price'/><br/>
+                <button>Add product</button>
+            </form>
             <table className="table">
                 <thead>
                     <tr>
