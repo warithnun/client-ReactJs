@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import { 
+import { Link } from 'react-router-dom'
+import FormEditProduct from './FormEditProduct'
+import {
     remove,
     create,
     getdata
 
- } from '../functions/product'
+} from '../functions/product'
 
 const FormProduct = () => {
     // javascript
@@ -35,19 +36,19 @@ const FormProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         create(form)
-        .then((res) => { 
-            loadData() 
-        })
-        .catch((err) => console.log(err))
+            .then((res) => {
+                loadData()
+            })
+            .catch((err) => console.log(err))
     }
-    const handleRemove = async (id)=>{
+    const handleRemove = async (id) => {
         console.log(id)
         remove(id)
-        .then((res)=>{
-            console.log(res)
-            loadData()
-        })
-        .catch((err)=>console.log(err))
+            .then((res) => {
+                console.log(res)
+                loadData()
+            })
+            .catch((err) => console.log(err))
     }
 
 
@@ -69,6 +70,7 @@ const FormProduct = () => {
                         <th scope="col">detail</th>
                         <th scope="col">price</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +81,14 @@ const FormProduct = () => {
                                 <td>{item.name}</td>
                                 <td>{item.detail}</td>
                                 <td>{item.price}</td>
-                                <td onClick={()=>handleRemove(item._id)}>delete</td>
+                                <td onClick={() => handleRemove(item._id)}>
+                                    delete
+                                </td>
+                                <td>
+                                    <Link to={'/edit/'+item._id}>
+                                    edit
+                                    </Link>
+                                </td>
                             </tr>
                         )
                             : null
