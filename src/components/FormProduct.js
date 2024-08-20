@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import { 
+    remove,
+    create,
+    getdata
+
+ } from '../functions/product'
+
 const FormProduct = () => {
     // javascript
     const wrt = 'wrtzen'
@@ -14,7 +21,7 @@ const FormProduct = () => {
     }, [])
 
     const loadData = async () => {
-        await axios.get(process.env.REACT_APP_API+'/product')
+        getdata()
             .then((res) => setData(res.data))
             .catch((err) => console.log(err))
     }
@@ -27,7 +34,7 @@ const FormProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post(process.env.REACT_APP_API+'/product', form)
+        create(form)
         .then((res) => { 
             loadData() 
         })
@@ -35,7 +42,7 @@ const FormProduct = () => {
     }
     const handleRemove = async (id)=>{
         console.log(id)
-        await axios.delete(process.env.REACT_APP_API+'/product/'+id)
+        remove(id)
         .then((res)=>{
             console.log(res)
             loadData()
