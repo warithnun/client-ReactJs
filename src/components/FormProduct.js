@@ -14,7 +14,7 @@ const FormProduct = () => {
     }, [])
 
     const loadData = async () => {
-        await axios.get('http://localhost:5000/api/product')
+        await axios.get(process.env.REACT_APP_API+'/product')
             .then((res) => setData(res.data))
             .catch((err) => console.log(err))
     }
@@ -27,7 +27,7 @@ const FormProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/product', form)
+        await axios.post(process.env.REACT_APP_API+'/product', form)
         .then((res) => { 
             loadData() 
         })
@@ -35,7 +35,7 @@ const FormProduct = () => {
     }
     const handleRemove = async (id)=>{
         console.log(id)
-        await axios.delete('http://localhost:5000/api/product/'+id)
+        await axios.delete(process.env.REACT_APP_API+'/product/'+id)
         .then((res)=>{
             console.log(res)
             loadData()
